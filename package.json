@@ -1,6 +1,6 @@
 {
 	"name": "flexery",
-	"version": "0.0.0",
+	"version": "0.0.1",
 	"description": "Flex modifier utilities for working with React",
 	"keywords": [
 		"react",
