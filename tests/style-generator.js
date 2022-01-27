@@ -153,3 +153,45 @@ test('Justify Distributed Alignment', (t) => {
 		t.deepEqual(style, set.expected)
 	}
 })
+
+test('Flex Direction Modifiers', (t) => {
+	const testSet = [
+		{
+			props: {
+				column: true,
+			},
+			expected: {
+				flexDirection: 'column',
+			},
+		},
+		{
+			props: {
+				columnReverse: true,
+			},
+			expected: {
+				flexDirection: 'column-reverse',
+			},
+		},
+		{
+			props: {
+				row: true,
+			},
+			expected: {
+				flexDirection: 'row',
+			},
+		},
+		{
+			props: {
+				rowReverse: true,
+			},
+			expected: {
+				flexDirection: 'row-reverse',
+			},
+		},
+	]
+
+	for (const set of testSet) {
+		const {style} = modsToStyle(set.props)
+		t.deepEqual(style, set.expected)
+	}
+})

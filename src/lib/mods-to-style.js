@@ -4,6 +4,7 @@ const alignRegex = /^align(Top|Center|Bottom|Start|End|Baseline)$/
 const justifyRegex =
 	/^just(Top|Center|Bottom|Start|End|Baseline|Between|Around|Evenly|Stretch)$/
 const centerRegex = /^center(X|Y)?$/
+const flexDirectionRegex = /^(row|column)(Reverse)?$/
 
 /**
  * @name modsToStyle
@@ -43,6 +44,17 @@ export function modsToStyle(mods) {
 			}
 
 			style.alignItems = cleanValue
+		}
+
+		if (flexDirectionRegex.test(key)) {
+			usedKey = true
+			const matches = flexDirectionRegex.exec(key)
+			let cleanDirection = matches[1].toLowerCase()
+			let reverse = matches[2] && matches[2].length && matches[2].toLowerCase()
+			if (reverse) {
+				cleanDirection += '-reverse'
+			}
+			style.flexDirection = cleanDirection
 		}
 
 		if (justifyRegex.test(key)) {
