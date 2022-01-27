@@ -111,3 +111,45 @@ test('Flex 10', (t) => {
 	const {style} = modsToStyle(props, 'px')
 	t.deepEqual(style, expected)
 })
+
+test('Justify Distributed Alignment', (t) => {
+	const testSet = [
+		{
+			props: {
+				justBetween: true,
+			},
+			expected: {
+				justifyContent: 'space-between',
+			},
+		},
+		{
+			props: {
+				justEvenly: true,
+			},
+			expected: {
+				justifyContent: 'space-evenly',
+			},
+		},
+		{
+			props: {
+				justAround: true,
+			},
+			expected: {
+				justifyContent: 'space-around',
+			},
+		},
+		{
+			props: {
+				justStretch: true,
+			},
+			expected: {
+				justifyContent: 'stretch',
+			},
+		},
+	]
+
+	for (const set of testSet) {
+		const {style} = modsToStyle(set.props)
+		t.deepEqual(style, set.expected)
+	}
+})

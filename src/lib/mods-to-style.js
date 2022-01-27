@@ -1,7 +1,8 @@
 const flexRegex = /^flex$/
 const flexBasisRegex = /^flex-(\d*)/
 const alignRegex = /^align(Top|Center|Bottom|Start|End|Baseline)$/
-const justifyRegex = /^just(Top|Center|Bottom|Start|End|Baseline)$/
+const justifyRegex =
+	/^just(Top|Center|Bottom|Start|End|Baseline|Between|Around|Evenly|Stretch)$/
 const centerRegex = /^center(X|Y)?$/
 
 /**
@@ -28,7 +29,6 @@ export function modsToStyle(mods) {
 		if (flexBasisRegex.test(key)) {
 			usedKey = true
 			const matches = flexBasisRegex.exec(key)
-			console.log({matches})
 			style.flex = matches[1]
 		}
 
@@ -52,6 +52,10 @@ export function modsToStyle(mods) {
 
 			if (['start', 'end'].includes(cleanValue)) {
 				cleanValue = 'flex-' + cleanValue
+			}
+
+			if (['between', 'around', 'evenly'].includes(cleanValue)) {
+				cleanValue = 'space-' + cleanValue
 			}
 
 			style.justifyContent = cleanValue
