@@ -1,0 +1,97 @@
+{
+	"name": "flexery",
+	"version": "0.0.0",
+	"description": "Flex modifier utilities for working with React",
+	"keywords": [
+		"react",
+		"component",
+		"components",
+		"util",
+		"utils",
+		"flex",
+		"flex-utils"
+	],
+	"repository": "barelyhuman/flexery",
+	"license": "MIT",
+	"author": {
+		"name": "Reaper",
+		"email": "ahoy@barelyhuman.dev",
+		"url": "https://barelyhuman.dev"
+	},
+	"type": "module",
+	"exports": {
+		".": "./dist/index.js",
+		"./package.json": "./package.json"
+	},
+	"main": "./dist/index.js",
+	"types": "./index.d.ts",
+	"files": [
+		"dist",
+		"index.d.ts"
+	],
+	"scripts": {
+		"build": "babel 'src' --out-dir=dist",
+		"fix": "xo --fix",
+		"prepare": "npm run build && husky install",
+		"size": "sizesnap table",
+		"test": "ava"
+	},
+	"lint-staged": {
+		"*.js": [
+			"npx standard --fix"
+		]
+	},
+	"babel": {
+		"presets": [
+			"@babel/preset-react"
+		]
+	},
+	"xo": {
+		"extends": "xo-react",
+		"prettier": true,
+		"rules": {
+			"react/prop-types": "off"
+		}
+	},
+	"prettier": {
+		"bracketSpacing": false,
+		"semi": false,
+		"singleQuote": true,
+		"trailingComma": "es5",
+		"useTabs": true
+	},
+	"ava": {
+		"require": [
+			"@babel/register"
+		]
+	},
+	"devDependencies": {
+		"@babel/cli": "^7.2.3",
+		"@babel/core": "^7.2.2",
+		"@babel/preset-react": "^7.0.0",
+		"@babel/register": "^7.0.0",
+		"@types/react": "^16.9.2",
+		"ava": "^4.0.1",
+		"eslint-config-xo-react": "^0.26.0",
+		"eslint-plugin-react": ">=7.28.0",
+		"eslint-plugin-react-hooks": ">=4.3.0",
+		"husky": "^7.0.4",
+		"lint-staged": "^11.2.6",
+		"prettier": "^2.5.1",
+		"react": "^16.7.0",
+		"react-dom": "^16.7.0",
+		"sizesnap": "^0.1.0",
+		"xo": "^0.47.0"
+	},
+	"peerDependencies": {
+		"react": ">=16.7"
+	},
+	"engines": {
+		"node": ">=12"
+	},
+	"sizesnap": {
+		"files": [
+			"./dist/**/*.js"
+		]
+	}
+}
