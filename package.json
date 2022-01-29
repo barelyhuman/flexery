@@ -11,6 +11,8 @@
 		"flex",
 		"flex-utils"
 	],
+	"type": "module",
+	"source": "src/index.js",
 	"repository": "barelyhuman/flexery",
 	"license": "MIT",
 	"author": {
@@ -18,19 +20,22 @@
 		"email": "ahoy@barelyhuman.dev",
 		"url": "https://barelyhuman.dev"
 	},
-	"type": "module",
 	"exports": {
-		".": "./dist/index.js",
+		".": {
+			"import": "./dist/index.mjs",
+			"require": "./dist/index.js"
+		},
 		"./package.json": "./package.json"
 	},
 	"main": "./dist/index.js",
+	"module": "./dist/index.mjs",
 	"types": "./index.d.ts",
 	"files": [
 		"dist",
 		"index.d.ts"
 	],
 	"scripts": {
-		"build": "babel 'src' --out-dir=dist",
+		"build": "wrap",
 		"fix": "xo --fix",
 		"prepare": "npm run build && husky install",
 		"size": "sizesnap table",
@@ -53,6 +58,9 @@
 			"react/prop-types": "off"
 		}
 	},
+	"wrap": {
+		"inferExternal": true
+	},
 	"prettier": {
 		"bracketSpacing": false,
 		"semi": false,
@@ -63,6 +71,9 @@
 	"ava": {
 		"require": [
 			"@babel/register"
+		],
+		"nodeArgumenst": [
+			"--require esm"
 		]
 	},
 	"devDependencies": {
@@ -70,16 +81,22 @@
 		"@babel/core": "^7.2.2",
 		"@babel/preset-react": "^7.0.0",
 		"@babel/register": "^7.0.0",
+		"@barelyhuman/wrap": "^1.0.1",
+		"@rollup/plugin-babel": "^5.3.0",
 		"@types/react": "^16.9.2",
 		"ava": "^4.0.1",
 		"eslint-config-xo-react": "^0.26.0",
 		"eslint-plugin-react": ">=7.28.0",
 		"eslint-plugin-react-hooks": ">=4.3.0",
+		"esm": "^3.2.25",
 		"husky": "^7.0.4",
 		"lint-staged": "^11.2.6",
 		"prettier": "^2.5.1",
 		"react": "^16.7.0",
 		"react-dom": "^16.7.0",
+		"rollup": "^2.66.1",
+		"rollup-plugin-node-externals": "^3.1.2",
+		"rollup-plugin-terser": "^7.0.2",
 		"sizesnap": "^0.1.0",
 		"xo": "^0.47.0"
 	},
