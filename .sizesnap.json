@@ -1,0 +1,7 @@
+{
+  "dist/index.js": {
+    "size": "4.81KB",
+    "brotli": "1.24KB",
+    "gzip": "1.49KB"
+  }
+}

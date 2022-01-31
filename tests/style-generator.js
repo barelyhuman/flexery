@@ -7,11 +7,15 @@ test('Flex Prop | Single', (t) => {
 	}
 
 	const expected = {
-		display: 'flex',
+		display: ['-webkit-box', '-moz-box', '-ms-flexbox', '-webkit-flex', 'flex'],
 	}
 
 	const {style} = modsToStyle(props, 'px')
-	t.deepEqual(style, expected)
+
+	for (const key of Object.keys(expected)) {
+		t.true(Object.prototype.hasOwnProperty.call(style, key))
+		t.deepEqual(style[key], expected[key])
+	}
 })
 
 test('Flex + Alignment Props', (t) => {
@@ -22,13 +26,17 @@ test('Flex + Alignment Props', (t) => {
 	}
 
 	const expected = {
-		display: 'flex',
+		display: ['-webkit-box', '-moz-box', '-ms-flexbox', '-webkit-flex', 'flex'],
 		justifyContent: 'top',
 		alignItems: 'center',
 	}
 
 	const {style} = modsToStyle(props, 'px')
-	t.deepEqual(style, expected)
+
+	for (const key of Object.keys(expected)) {
+		t.true(Object.prototype.hasOwnProperty.call(style, key))
+		t.deepEqual(style[key], expected[key])
+	}
 })
 
 test('Center Props | Singler', (t) => {
@@ -39,12 +47,16 @@ test('Center Props | Singler', (t) => {
 
 	const expected = {
 		alignItems: 'center',
-		display: 'flex',
+		display: ['-webkit-box', '-moz-box', '-ms-flexbox', '-webkit-flex', 'flex'],
 		justifyContent: 'center',
 	}
 
 	const {style} = modsToStyle(props, 'px')
-	t.deepEqual(style, expected)
+
+	for (const key of Object.keys(expected)) {
+		t.true(Object.prototype.hasOwnProperty.call(style, key))
+		t.deepEqual(style[key], expected[key])
+	}
 })
 
 test('Center Props | Multiple', (t) => {
@@ -56,12 +68,16 @@ test('Center Props | Multiple', (t) => {
 
 	const expected = {
 		alignItems: 'center',
-		display: 'flex',
+		display: ['-webkit-box', '-moz-box', '-ms-flexbox', '-webkit-flex', 'flex'],
 		justifyContent: 'center',
 	}
 
 	const {style} = modsToStyle(props, 'px')
-	t.deepEqual(style, expected)
+
+	for (const key of Object.keys(expected)) {
+		t.true(Object.prototype.hasOwnProperty.call(style, key))
+		t.deepEqual(style[key], expected[key])
+	}
 })
 
 test('Direction Alignments | All', (t) => {
@@ -74,12 +90,16 @@ test('Direction Alignments | All', (t) => {
 	}
 
 	const expected = {
-		display: 'flex',
+		display: ['-webkit-box', '-moz-box', '-ms-flexbox', '-webkit-flex', 'flex'],
 		alignItems: 'flex-end',
 	}
 
 	const {style} = modsToStyle(props, 'px')
-	t.deepEqual(style, expected)
+
+	for (const key of Object.keys(expected)) {
+		t.true(Object.prototype.hasOwnProperty.call(style, key))
+		t.deepEqual(style[key], expected[key])
+	}
 })
 
 test('Flex One', (t) => {
@@ -89,12 +109,16 @@ test('Flex One', (t) => {
 	}
 
 	const expected = {
-		display: 'flex',
+		display: ['-webkit-box', '-moz-box', '-ms-flexbox', '-webkit-flex', 'flex'],
 		flex: '1',
 	}
 
 	const {style} = modsToStyle(props, 'px')
-	t.deepEqual(style, expected)
+
+	for (const key of Object.keys(expected)) {
+		t.true(Object.prototype.hasOwnProperty.call(style, key))
+		t.deepEqual(style[key], expected[key])
+	}
 })
 
 test('Flex 10', (t) => {
@@ -104,12 +128,16 @@ test('Flex 10', (t) => {
 	}
 
 	const expected = {
-		display: 'flex',
+		display: ['-webkit-box', '-moz-box', '-ms-flexbox', '-webkit-flex', 'flex'],
 		flex: '10',
 	}
 
 	const {style} = modsToStyle(props, 'px')
-	t.deepEqual(style, expected)
+
+	for (const key of Object.keys(expected)) {
+		t.true(Object.prototype.hasOwnProperty.call(style, key))
+		t.deepEqual(style[key], expected[key])
+	}
 })
 
 test('Justify Distributed Alignment', (t) => {
@@ -128,6 +156,7 @@ test('Justify Distributed Alignment', (t) => {
 			},
 			expected: {
 				justifyContent: 'space-evenly',
+				WebkitJustifyContent: 'space-evenly',
 			},
 		},
 		{
@@ -136,6 +165,7 @@ test('Justify Distributed Alignment', (t) => {
 			},
 			expected: {
 				justifyContent: 'space-around',
+				WebkitJustifyContent: 'space-around',
 			},
 		},
 		{
@@ -144,13 +174,17 @@ test('Justify Distributed Alignment', (t) => {
 			},
 			expected: {
 				justifyContent: 'stretch',
+				WebkitJustifyContent: 'stretch',
 			},
 		},
 	]
 
 	for (const set of testSet) {
 		const {style} = modsToStyle(set.props)
-		t.deepEqual(style, set.expected)
+		for (const key of Object.keys(set.expected)) {
+			t.true(Object.prototype.hasOwnProperty.call(style, key))
+			t.deepEqual(style[key], set.expected[key])
+		}
 	}
 })
 
@@ -162,6 +196,8 @@ test('Flex Direction Modifiers', (t) => {
 			},
 			expected: {
 				flexDirection: 'column',
+				WebkitBoxOrient: 'vertical',
+				WebkitBoxDirection: 'normal',
 			},
 		},
 		{
@@ -170,6 +206,8 @@ test('Flex Direction Modifiers', (t) => {
 			},
 			expected: {
 				flexDirection: 'column-reverse',
+				WebkitBoxOrient: 'vertical',
+				WebkitBoxDirection: 'reverse',
 			},
 		},
 		{
@@ -178,6 +216,8 @@ test('Flex Direction Modifiers', (t) => {
 			},
 			expected: {
 				flexDirection: 'row',
+				WebkitBoxOrient: 'horizontal',
+				WebkitBoxDirection: 'normal',
 			},
 		},
 		{
@@ -186,12 +226,17 @@ test('Flex Direction Modifiers', (t) => {
 			},
 			expected: {
 				flexDirection: 'row-reverse',
+				WebkitBoxOrient: 'horizontal',
+				WebkitBoxDirection: 'reverse',
 			},
 		},
 	]
 
 	for (const set of testSet) {
 		const {style} = modsToStyle(set.props)
-		t.deepEqual(style, set.expected)
+		for (const key of Object.keys(set.expected)) {
+			t.true(Object.prototype.hasOwnProperty.call(style, key))
+			t.deepEqual(style[key], set.expected[key])
+		}
 	}
 })
