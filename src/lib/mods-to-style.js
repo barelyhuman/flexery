@@ -9,7 +9,10 @@ const flexDirectionRegex = /^(row|column)(Reverse)?$/
 const applyFlex = (prop, o = {}) => {
   if (!flexRegex.test(prop)) return false
 
-  o.display = ['-webkit-box', '-moz-box', '-ms-flexbox', '-webkit-flex', 'flex']
+  // React cannot handle these prefixes so it won't work, removing till I have a
+  // better solution
+  // o.display = ['-webkit-box', '-moz-box', '-ms-flexbox', '-webkit-flex', 'flex']
+  o.display = 'flex'
   return true
 }
 

@@ -8,7 +8,7 @@ test('Flex Prop | Single', t => {
   }
 
   const expected = {
-    display: ['-webkit-box', '-moz-box', '-ms-flexbox', '-webkit-flex', 'flex'],
+    display: 'flex',
   }
 
   const { style } = modsToStyle(props, 'px')
@@ -27,7 +27,7 @@ test('Flex + Alignment Props', t => {
   }
 
   const expected = {
-    display: ['-webkit-box', '-moz-box', '-ms-flexbox', '-webkit-flex', 'flex'],
+    display: 'flex',
     justifyContent: 'top',
     alignItems: 'center',
   }
@@ -48,7 +48,7 @@ test('Center Props | Singler', t => {
 
   const expected = {
     alignItems: 'center',
-    display: ['-webkit-box', '-moz-box', '-ms-flexbox', '-webkit-flex', 'flex'],
+    display: 'flex',
     justifyContent: 'center',
   }
 
@@ -69,7 +69,7 @@ test('Center Props | Multiple', t => {
 
   const expected = {
     alignItems: 'center',
-    display: ['-webkit-box', '-moz-box', '-ms-flexbox', '-webkit-flex', 'flex'],
+    display: 'flex',
     justifyContent: 'center',
   }
 
@@ -91,7 +91,7 @@ test('Direction Alignments | All', t => {
   }
 
   const expected = {
-    display: ['-webkit-box', '-moz-box', '-ms-flexbox', '-webkit-flex', 'flex'],
+    display: 'flex',
     alignItems: 'flex-end',
   }
 
@@ -110,7 +110,7 @@ test('Flex One', t => {
   }
 
   const expected = {
-    display: ['-webkit-box', '-moz-box', '-ms-flexbox', '-webkit-flex', 'flex'],
+    display: 'flex',
     flex: '1',
   }
 
@@ -129,7 +129,7 @@ test('Flex 10', t => {
   }
 
   const expected = {
-    display: ['-webkit-box', '-moz-box', '-ms-flexbox', '-webkit-flex', 'flex'],
+    display: 'flex',
     flex: '10',
   }
 
