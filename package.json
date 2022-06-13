@@ -1,6 +1,6 @@
 {
   "name": "flexery",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "Flex modifier utilities for working with React",
   "keywords": [
     "react",
@@ -28,10 +28,6 @@
   "main": "./index.js",
   "module": "./index.mjs",
   "types": "./index.d.ts",
-  "files": [
-    "dist",
-    "index.d.ts"
-  ],
   "scripts": {
     "build": "rimraf dist; nr build:modules; nr copy",
     "postbuild": "nr copy",
