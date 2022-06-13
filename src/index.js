@@ -1,3 +1,3 @@
-export * from './lib/mods-to-style.js'
-export * from './hoc/with-flexery.js'
-export * from './components/flexery.js'
+export * from './components/flexery'
+export * from './hoc/with-flexery'
+export * from './lib/mods-to-style'

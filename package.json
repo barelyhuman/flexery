@@ -1,114 +1,101 @@
 {
-	"name": "flexery",
-	"version": "0.0.6",
-	"description": "Flex modifier utilities for working with React",
-	"keywords": [
-		"react",
-		"component",
-		"components",
-		"util",
-		"utils",
-		"flex",
-		"flex-utils"
-	],
-	"type": "module",
-	"source": "src/index.js",
-	"repository": "barelyhuman/flexery",
-	"license": "MIT",
-	"author": {
-		"name": "Reaper",
-		"email": "ahoy@barelyhuman.dev",
-		"url": "https://barelyhuman.dev"
-	},
-	"exports": {
-		".": {
-			"import": "./dist/index.mjs",
-			"require": "./dist/index.js"
-		},
-		"./package.json": "./package.json"
-	},
-	"main": "./dist/index.js",
-	"module": "./dist/index.mjs",
-	"types": "./index.d.ts",
-	"files": [
-		"dist",
-		"index.d.ts"
-	],
-	"scripts": {
-		"build": "wrap",
-		"fix": "xo --fix",
-		"prepare": "npm run build && husky install",
-		"size": "sizesnap table",
-		"test": "ava"
-	},
-	"lint-staged": {
-		"*.js": [
-			"npx standard --fix"
-		]
-	},
-	"babel": {
-		"presets": [
-			"@babel/preset-react"
-		]
-	},
-	"xo": {
-		"extends": "xo-react",
-		"prettier": true,
-		"rules": {
-			"react/prop-types": "off"
-		}
-	},
-	"wrap": {
-		"inferExternal": true
-	},
-	"prettier": {
-		"bracketSpacing": false,
-		"semi": false,
-		"singleQuote": true,
-		"trailingComma": "es5",
-		"useTabs": true
-	},
-	"ava": {
-		"require": [
-			"@babel/register"
-		],
-		"nodeArgumenst": [
-			"--require esm"
-		]
-	},
-	"devDependencies": {
-		"@babel/cli": "^7.2.3",
-		"@babel/core": "^7.2.2",
-		"@babel/preset-react": "^7.0.0",
-		"@babel/register": "^7.0.0",
-		"@barelyhuman/wrap": "^1.0.1",
-		"@rollup/plugin-babel": "^5.3.0",
-		"@types/react": "^16.9.2",
-		"ava": "^4.0.1",
-		"eslint-config-xo-react": "^0.26.0",
-		"eslint-plugin-react": ">=7.28.0",
-		"eslint-plugin-react-hooks": ">=4.3.0",
-		"esm": "^3.2.25",
-		"husky": "^7.0.4",
-		"lint-staged": "^11.2.6",
-		"prettier": "^2.5.1",
-		"react": "^16.7.0",
-		"react-dom": "^16.7.0",
-		"rollup": "^2.66.1",
-		"rollup-plugin-node-externals": "^3.1.2",
-		"rollup-plugin-terser": "^7.0.2",
-		"sizesnap": "^0.1.0",
-		"xo": "^0.47.0"
-	},
-	"peerDependencies": {
-		"react": ">=16.7"
-	},
-	"engines": {
-		"node": ">=12"
-	},
-	"sizesnap": {
-		"files": [
-			"./dist/**/*.js"
-		]
-	}
+  "name": "flexery",
+  "version": "0.0.7",
+  "description": "Flex modifier utilities for working with React",
+  "keywords": [
+    "react",
+    "component",
+    "components",
+    "util",
+    "utils",
+    "flex",
+    "flex-utils"
+  ],
+  "repository": "barelyhuman/flexery",
+  "license": "MIT",
+  "author": {
+    "name": "Reaper",
+    "email": "ahoy@barelyhuman.dev",
+    "url": "https://barelyhuman.dev"
+  },
+  "exports": {
+    ".": {
+      "import": "./index.js",
+      "require": "./index.cjs"
+    },
+    "./package.json": "./package.json"
+  },
+  "main": "./index.js",
+  "module": "./index.mjs",
+  "types": "./index.d.ts",
+  "files": [
+    "dist",
+    "index.d.ts"
+  ],
+  "scripts": {
+    "build": "rimraf dist; nr build:modules; nr copy",
+    "postbuild": "nr copy",
+    "build:modules": "tsup src/index.js --loader '.js=jsx' --format cjs,esm --clean --dts --target=node12.22",
+    "copy": "copyfiles -f package.json readme.md license dist && json -I -f dist/package.json -e \"this.private=false; this.devDependencies=undefined; this.optionalDependencies=undefined; this.scripts=undefined;this.sizesnap=undefined; this.prettier=undefined; this.jest=undefined; this['lint-staged']=undefined;\"",
+    "dev": "nr build -- --watch",
+    "next": "bumpp --commit --tag",
+    "fix": "eslint --fix . ; prettier --write .",
+    "size": "sizesnap",
+    "test": "ava"
+  },
+  "babel": {
+    "presets": [
+      "@babel/preset-env",
+      "@babel/preset-react"
+    ]
+  },
+  "prettier": "@barelyhuman/prettier-config",
+  "ava": {
+    "require": [
+      "@babel/register"
+    ]
+  },
+  "devDependencies": {
+    "@antfu/ni": "^0.16.2",
+    "@babel/cli": "^7.2.3",
+    "@babel/core": "^7.2.2",
+    "@babel/preset-env": "^7.18.2",
+    "@babel/preset-react": "^7.0.0",
+    "@babel/register": "^7.0.0",
+    "@barelyhuman/prettier-config": "^1.0.0",
+    "@rollup/plugin-babel": "^5.3.0",
+    "@types/react": "^16.9.2",
+    "@typescript-eslint/eslint-plugin": "^5.27.1",
+    "@typescript-eslint/parser": "^5.27.1",
+    "ava": "^4.0.1",
+    "bumpp": "^7.1.1",
+    "copyfiles": "^2.4.1",
+    "eslint": "^8.17.0",
+    "eslint-config-xo-react": "^0.26.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-react": "^7.28.0",
+    "eslint-plugin-react-hooks": ">=4.3.0",
+    "eslint-plugin-simple-import-sort": "^7.0.0",
+    "json": "^11.0.0",
+    "microbundle": "^0.15.0",
+    "prettier": "^2.5.1",
+    "react": "^16.7.0",
+    "react-dom": "^16.7.0",
+    "rimraf": "^3.0.2",
+    "sizesnap": "^0.1.0",
+    "tsup": "^6.1.2"
+  },
+  "peerDependencies": {
+    "react": ">=16.7"
+  },
+  "engines": {
+    "node": ">=12"
+  },
+  "sizesnap": {
+    "files": [
+      "./dist/**/*.cjs",
+      "./dist/**/*.mjs",
+      "./dist/**/*.ts"
+    ]
+  }
 }
