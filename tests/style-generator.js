@@ -241,3 +241,62 @@ test('Flex Direction Modifiers', t => {
     }
   }
 })
+
+test('Flex Gap Generic', t => {
+  const props = {
+    'flex': true,
+    'gap-2': true,
+  }
+
+  const expected = {
+    display: 'flex',
+    gap: '2px',
+  }
+
+  const { style } = modsToStyle(props, 'px')
+
+  for (const key of Object.keys(expected)) {
+    t.true(Object.prototype.hasOwnProperty.call(style, key))
+    t.deepEqual(style[key], expected[key])
+  }
+})
+
+test('Flex Gap Directional', t => {
+  const props = {
+    'flex': true,
+    'gapX-2': true,
+    'gapY-4': true,
+  }
+
+  const expected = {
+    display: 'flex',
+    rowGap: '4px',
+    columnGap: '2px',
+  }
+
+  const { style } = modsToStyle(props, 'px')
+
+  for (const key of Object.keys(expected)) {
+    t.true(Object.prototype.hasOwnProperty.call(style, key))
+    t.deepEqual(style[key], expected[key])
+  }
+})
+
+test('Flex Gap Directional Float Numbers', t => {
+  const props = {
+    'flex': true,
+    'gapX-0.2': true,
+  }
+
+  const expected = {
+    display: 'flex',
+    columnGap: '0.2px',
+  }
+
+  const { style } = modsToStyle(props, 'px')
+
+  for (const key of Object.keys(expected)) {
+    t.true(Object.prototype.hasOwnProperty.call(style, key))
+    t.deepEqual(style[key], expected[key])
+  }
+})
