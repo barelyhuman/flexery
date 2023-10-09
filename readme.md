@@ -32,7 +32,9 @@ yarn add flexery
 
 ## API
 
-The library has a similar api to [Spacery](https://github.com/barelyhuman/spacery#api) , just replace the name with Flexery
+The library has a similar api to
+[Spacery](https://github.com/barelyhuman/spacery#api) , just replace the name
+with Flexery
 
 ## License
 

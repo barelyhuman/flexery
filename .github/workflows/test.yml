@@ -19,7 +19,23 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
-      - run: npm install -g pnpm@6
-      - run: pnpm install
+      - run: |
+          npm install -g pnpm@6
+          rm -rf pnpm-lock.yaml
+          pnpm i --no-frozen-lockfile
+          pnpm add --save-dev ava@4 rollup@2 rimraf@4
+        if: matrix.node-version == 12
+
+      - run: |
+          corepack disable
+          npm install -g pnpm@6
+          pnpm i --no-frozen-lockfile
+        if: matrix.node-version == 14
+
+      - run: |
+          npm install -g pnpm
+          pnpm install
+        if: matrix.node-version == 16 || matrix.node-version == 18
+
       - run: pnpm build
       - run: pnpm run test:ci
