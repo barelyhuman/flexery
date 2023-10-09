@@ -5,6 +5,7 @@ const justifyRegex =
   /^just(Top|Center|Bottom|Start|End|Baseline|Between|Around|Evenly|Stretch)$/
 const centerRegex = /^center(X|Y)?$/
 const flexDirectionRegex = /^(row|column)(Reverse)?$/
+const gapRegex = /^gap(X|Y)?-(\d*(.\d*)?)/
 
 const applyFlex = (prop, o = {}) => {
   if (!flexRegex.test(prop)) return false
@@ -100,6 +101,23 @@ const applyCenter = (prop, o = {}) => {
   return true
 }
 
+const applyGap = (prop, o = {}, dims) => {
+  if (!gapRegex.test(prop)) return false
+  const matches = gapRegex.exec(prop)
+
+  let value = matches[2]
+
+  if (!isNaN(+value)) value = '' + value + dims
+
+  if (matches[1] === undefined) o.gap = value
+
+  if (matches[1] === 'X') o.columnGap = value
+
+  if (matches[1] === 'Y') o.rowGap = value
+
+  return true
+}
+
 /**
  * @name modsToStyle
  * @description convert given modifiers object of the form
@@ -109,7 +127,7 @@ const applyCenter = (prop, o = {}) => {
  * @property result.style
  * @property result.santizedProps
  */
-export function modsToStyle(mods) {
+export function modsToStyle(mods, dims) {
   const style = {}
 
   const sanitizedProps = { ...mods }
@@ -122,7 +140,8 @@ export function modsToStyle(mods) {
         applyAlignments(key, style) ||
         applyDirections(key, style) ||
         applyJustifications(key, style) ||
-        applyCenter(key, style)
+        applyCenter(key, style) ||
+        applyGap(key, style, dims)
       )
     )
       continue

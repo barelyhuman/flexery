@@ -28,16 +28,18 @@
   "main": "./index.js",
   "module": "./index.mjs",
   "types": "./index.d.ts",
+  "packageManager": "pnpm@6.35.1",
   "scripts": {
-    "build": "rimraf dist; nr build:modules; nr copy",
-    "postbuild": "nr copy",
+    "build": "rimraf dist; pnpm build:modules; pnpm copy",
+    "postbuild": "pnpm copy",
     "build:modules": "tsup src/index.js --loader '.js=jsx' --format cjs,esm --clean --dts --target=node12.22",
     "copy": "copyfiles -f package.json readme.md license dist && json -I -f dist/package.json -e \"this.private=false; this.devDependencies=undefined; this.optionalDependencies=undefined; this.scripts=undefined;this.sizesnap=undefined; this.prettier=undefined; this.jest=undefined; this['lint-staged']=undefined;\"",
-    "dev": "nr build -- --watch",
+    "dev": "pnpm run build -- --watch",
     "next": "bumpp --commit --tag",
     "fix": "eslint --fix . ; prettier --write .",
     "size": "sizesnap",
-    "test": "ava"
+    "test": "ava",
+    "test:ci": "c8 ava"
   },
   "babel": {
     "presets": [
@@ -52,7 +54,6 @@
     ]
   },
   "devDependencies": {
-    "@antfu/ni": "^0.16.2",
     "@babel/cli": "^7.2.3",
     "@babel/core": "^7.2.2",
     "@babel/preset-env": "^7.18.2",
@@ -65,6 +66,7 @@
     "@typescript-eslint/parser": "^5.27.1",
     "ava": "^4.0.1",
     "bumpp": "^7.1.1",
+    "c8": "^8.0.1",
     "copyfiles": "^2.4.1",
     "eslint": "^8.17.0",
     "eslint-config-xo-react": "^0.26.0",
@@ -78,7 +80,7 @@
     "react": "^16.7.0",
     "react-dom": "^16.7.0",
     "rimraf": "^3.0.2",
-    "sizesnap": "^0.1.0",
+    "sizesnap": "^0.2.1",
     "tsup": "^6.1.2"
   },
   "peerDependencies": {

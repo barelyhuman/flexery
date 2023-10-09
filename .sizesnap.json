@@ -1,32 +1,12 @@
 {
-  "dist/index.cjs": {
-    "size": "73.13KB",
-    "brotli": "13.63KB",
-    "gzip": "15.85KB"
-  },
   "dist/index.mjs": {
-    "size": "72.63KB",
-    "brotli": "13.48KB",
-    "gzip": "15.72KB"
-  },
-  "dist/components/flexery.d.ts": {
-    "size": "131B",
-    "brotli": "102B",
-    "gzip": "122B"
-  },
-  "dist/hoc/with-flexery.d.ts": {
-    "size": "126B",
-    "brotli": "102B",
-    "gzip": "128B"
+    "size": "5.455KB",
+    "brotli": "1.346KB",
+    "gzip": "1.548KB"
   },
   "dist/index.d.ts": {
-    "size": "111B",
-    "brotli": "75B",
-    "gzip": "91B"
-  },
-  "dist/lib/mods-to-style.d.ts": {
-    "size": "85B",
-    "brotli": "84B",
-    "gzip": "88B"
+    "size": "405B",
+    "brotli": "173B",
+    "gzip": "211B"
   }
 }
