@@ -1,7 +1,6 @@
 lockfileVersion: 5.3
 
 specifiers:
-  '@antfu/ni': ^0.16.2
   '@babel/cli': ^7.2.3
   '@babel/core': ^7.2.2
   '@babel/preset-env': ^7.18.2
@@ -32,7 +31,6 @@ specifiers:
   tsup: ^6.1.2
 
 devDependencies:
-  '@antfu/ni': 0.16.2
   '@babel/cli': 7.16.8_@babel+core@7.16.12
   '@babel/core': 7.16.12
   '@babel/preset-env': 7.18.2_@babel+core@7.16.12
@@ -63,11 +61,6 @@ devDependencies:
   tsup: 6.1.2
 
 packages:
-
-  /@antfu/ni/0.16.2:
-    resolution: {integrity: sha512-HZH4I07EYKU4KZLtUYm/zEmaDIhaq51H/qu45uH1AcUPWqMGbB7evE/TnSr0SGInEA+oQs4Is5Vn/PmQhfuU5w==}
-    hasBin: true
-    dev: true
 
   /@babel/cli/7.16.8_@babel+core@7.16.12:
     resolution: {integrity: sha512-FTKBbxyk5TclXOGmwYyqelqP5IF6hMxaeJskd85jbR5jBfYlwqgwAbJwnixi1ZBbTqKfFuAA95mdmUFeSRwyJA==}
